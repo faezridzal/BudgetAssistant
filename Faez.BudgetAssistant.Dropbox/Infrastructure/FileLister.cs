@@ -10,12 +10,8 @@
         private const string ApplicationRoot = "/Apps/Faez.BudgetAssistant";
 
         private readonly DropboxClient _client;
-
-        public FileLister() : this("IPmI4s7uf24AAAAAAAAC5SYxqMCtJ5pvXLlVR8PfnyQmcvbT9T4F0Q_t2yQH60nh")
-        {
-        }
-
-        private FileLister(string accessToken)
+        
+        public FileLister(string accessToken)
         {
             _client = new DropboxClient(accessToken);
         }
