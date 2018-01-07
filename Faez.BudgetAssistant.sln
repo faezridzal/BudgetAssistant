@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Faez.BudgetAssistant.Core.U
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Modules", "01 - Modules", "{B1DF8F76-FD44-4481-8475-068ADC3F1E37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Faez.BudgetAssistant.Transferwise", "Faez.BudgetAssistant.Transferwise\Faez.BudgetAssistant.Transferwise.csproj", "{0B0111AD-C510-4DF0-9B87-1360AC2257F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Faez.BudgetAssistant.Transferwise", "Faez.BudgetAssistant.Transferwise\Faez.BudgetAssistant.Transferwise.csproj", "{0B0111AD-C510-4DF0-9B87-1360AC2257F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Faez.BudgetAssistant.Transferwise.UnitTests", "Faez.BudgetAssistant.Transferwise.UnitTests\Faez.BudgetAssistant.Transferwise.UnitTests.csproj", "{2FFCFBE0-5638-4DCA-A8CF-0EC3F186EFA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Faez.BudgetAssistant.Transferwise.UnitTests", "Faez.BudgetAssistant.Transferwise.UnitTests\Faez.BudgetAssistant.Transferwise.UnitTests.csproj", "{2FFCFBE0-5638-4DCA-A8CF-0EC3F186EFA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Faez.BudgetAssistant.Dropbox", "Faez.BudgetAssistant.Dropbox\Faez.BudgetAssistant.Dropbox.csproj", "{16E39D0B-05E0-47A5-A04B-9AD6D4BDE8A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{2FFCFBE0-5638-4DCA-A8CF-0EC3F186EFA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FFCFBE0-5638-4DCA-A8CF-0EC3F186EFA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FFCFBE0-5638-4DCA-A8CF-0EC3F186EFA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16E39D0B-05E0-47A5-A04B-9AD6D4BDE8A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16E39D0B-05E0-47A5-A04B-9AD6D4BDE8A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16E39D0B-05E0-47A5-A04B-9AD6D4BDE8A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16E39D0B-05E0-47A5-A04B-9AD6D4BDE8A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{D8B4B776-B841-4B94-85B1-D3AF7282701C} = {766C22F1-09B9-47C9-82F9-2BE2203651DE}
 		{0B0111AD-C510-4DF0-9B87-1360AC2257F8} = {B1DF8F76-FD44-4481-8475-068ADC3F1E37}
 		{2FFCFBE0-5638-4DCA-A8CF-0EC3F186EFA4} = {766C22F1-09B9-47C9-82F9-2BE2203651DE}
+		{16E39D0B-05E0-47A5-A04B-9AD6D4BDE8A2} = {57F29859-2576-44D5-956E-EDE66AF1C6B3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6BCD8660-04E6-48C1-9F48-564A47ED62E8}
