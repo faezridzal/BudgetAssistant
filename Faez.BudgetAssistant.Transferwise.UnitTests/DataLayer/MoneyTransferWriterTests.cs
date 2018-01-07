@@ -1,10 +1,10 @@
 ﻿namespace Faez.BudgetAssistant.Transferwise.UnitTests.DataLayer
 {
     using System.IO;
+    using AutoFixture;
     using FluentAssertions;
     using Models;
     using NUnit.Framework;
-    using Ploeh.AutoFixture;
     using Transferwise.DataLayer;
 
     [TestFixture]

@@ -13,13 +13,13 @@
         {
             Action nullObject = () => ArgumentExtensions.EnsureArgumentNotNull<object>(null, "argumentName");
 
-            nullObject.ShouldThrow<ArgumentNullException>();
+            nullObject.Should().Throw<ArgumentNullException>();
 
             Action emptyString = () => ArgumentExtensions.EnsureArgumentNotNullOrWhitespace(string.Empty, "argumentName");
             Action whitespaceString = () => ArgumentExtensions.EnsureArgumentNotNullOrWhitespace(" ", "argumentName");
 
-            emptyString.ShouldThrow<ArgumentNullException>();
-            whitespaceString.ShouldThrow<ArgumentNullException>();
+            emptyString.Should().Throw<ArgumentNullException>();
+            whitespaceString.Should().Throw<ArgumentNullException>();
         }
     }
 }

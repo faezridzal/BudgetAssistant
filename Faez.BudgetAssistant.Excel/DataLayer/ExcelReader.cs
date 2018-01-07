@@ -11,8 +11,14 @@
     {
         private const int StartRow = 4;
         private const int EndRow = 25;
+
         private const int StartColumn = 2;
         private const int EndColumn = 13;
+
+        private const string Euro = "€";
+        private const string Ringgit = "MYR";
+
+        private static readonly ISet<int> CreditRows = new HashSet<int> { 4, 5 };
 
         public IEnumerable<BudgetEntry> GetEntries(Stream stream)
         {
@@ -40,7 +46,7 @@
 
                             var cell = worksheet.Cells[row, column];
 
-                            if (!(cell.Value is decimal amount))
+                            if (!(cell.Value is double amount))
                             {
                                 continue;
                             }
@@ -49,9 +55,9 @@
                             {
                                 Date = new DateTime(year, month, 1),
                                 Category = category,
-                                Currency = null, // TODO: Find out how to access cell formatting to get currency
-                                Amount = amount,
-                                IsCredit = false, // TODO: Find out how to access cell colour to get debit/credit
+                                Currency = GetCurrency(cell.Text),
+                                Amount = Convert.ToDecimal(amount),
+                                IsCredit = CreditRows.Contains(row),
                                 Comments = GetComments(cell)
                             };
 
@@ -68,7 +74,7 @@
 
             for (var row = StartRow; row <= EndRow; row++)
             {
-                var value = worksheet.Cells[row, 1].ToString();
+                var value = worksheet.Cells[row, 1].Text;
 
                 if (string.IsNullOrWhiteSpace(value))
                 {
@@ -87,7 +93,7 @@
 
             for (var column = StartColumn; column <= EndColumn; column++)
             {
-                var value = worksheet.Cells[3, column].ToString();
+                var value = worksheet.Cells[3, column].Text;
 
                 if (string.IsNullOrWhiteSpace(value))
                 {
@@ -104,7 +110,24 @@
 
         private static string[] GetComments(ExcelRangeBase cell)
         {
-            return cell.Comment?.Text.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            return cell.Comment == null 
+                ? new string[0] 
+                : cell.Comment.Text.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        private static string GetCurrency(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return null;
+            }
+
+            if (text.StartsWith(Euro))
+            {
+                return "EUR";
+            }
+
+            return text.StartsWith(Ringgit) ? Ringgit : null;
         }
     }
 }
