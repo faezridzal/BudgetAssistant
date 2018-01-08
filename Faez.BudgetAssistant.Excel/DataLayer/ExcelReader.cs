@@ -10,7 +10,7 @@
     public sealed class ExcelReader : IExcelReader
     {
         private const int StartRow = 4;
-        private const int EndRow = 25;
+        private const int EndRow = 26;
 
         private const int StartColumn = 2;
         private const int EndColumn = 13;
@@ -18,7 +18,7 @@
         private const string Euro = "€";
         private const string Ringgit = "MYR";
 
-        private static readonly ISet<int> CreditRows = new HashSet<int> { 4, 5 };
+        private static readonly ISet<int> CreditRows = new HashSet<int> { 4, 5, 6 };
 
         public IEnumerable<BudgetEntry> GetEntries(Stream stream)
         {

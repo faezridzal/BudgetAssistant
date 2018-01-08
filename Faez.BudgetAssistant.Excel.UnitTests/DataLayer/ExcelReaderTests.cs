@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using Excel.DataLayer;
     using FluentAssertions;
     using Helpers;
@@ -24,7 +25,7 @@
                 entries.AddRange(new ExcelReader().GetEntries(stream));
             }
 
-            entries.Count.Should().Be(513);
+            entries.Count.Should().Be(540);
 
             foreach (var entry in entries)
             {
@@ -32,6 +33,8 @@
                 entry.Category.Should().NotBeNull();
                 entry.Amount.Should().BeGreaterOrEqualTo(0);
             }
+
+            entries.All(e => e.IsCredit).Should().BeFalse();
         }
     }
 }
