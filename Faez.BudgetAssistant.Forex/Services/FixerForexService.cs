@@ -9,7 +9,7 @@
     using Models;
     using Newtonsoft.Json;
 
-    public sealed class FixerForexService : ILatestRateService, IHistoricalRateService
+    public sealed class FixerForexService : IForexService
     {
         private const string Endpoint = "https://api.fixer.io";
 
@@ -20,29 +20,11 @@
             _httpClient = httpClient.EnsureArgumentNotNull(nameof(httpClient));
         }
 
-        public async Task<ForexRate> GetLatestRateAsync(string fromCurrency, string toCurrency)
+        public async Task<ForexRate> GetRateAsync(DateTime date, string fromCurrency, string toCurrency)
         {
-            var path = GetQueryString(DateTime.Today, fromCurrency, toCurrency);
+            fromCurrency.EnsureArgumentIsCurrency(nameof(fromCurrency));
+            toCurrency.EnsureArgumentIsCurrency(nameof(toCurrency));
 
-            using (var stream = await _httpClient.GetStreamAsync(path))
-            using (var streamReader = new StreamReader(stream))
-            using (var reader = new JsonTextReader(streamReader))
-            {
-                var serializer = new JsonSerializer();
-                var model = serializer.Deserialize<FixerModel>(reader);
-
-                return new ForexRate
-                {
-                    Date = DateTime.Today,
-                    FromCurrency = fromCurrency,
-                    ToCurrency = toCurrency,
-                    Rate = model.Rates[toCurrency]
-                };
-            }
-        }
-
-        public async Task<ForexRate> GetHistoricalRateAsync(DateTime date, string fromCurrency, string toCurrency)
-        {
             var path = GetQueryString(date, fromCurrency, toCurrency);
 
             using (var stream = await _httpClient.GetStreamAsync(path))
@@ -64,9 +46,7 @@
 
         private static string GetQueryString(DateTime date, string fromCurrency, string toCurrency)
         {
-            var routing = date.Date == DateTime.Today ? "latest" : date.ToString("yyyy-MM-dd");
-
-            return $"{Endpoint}/{routing}?base={fromCurrency}&symbols={toCurrency}";
+            return $"{Endpoint}/{date:yyyy-MM-dd}?base={fromCurrency}&symbols={toCurrency}";
         }
 
         private sealed class FixerModel

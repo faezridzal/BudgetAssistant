@@ -23,5 +23,17 @@
 
             return value;
         }
+
+        public static string EnsureArgumentIsCurrency(this string value, string name)
+        {
+            EnsureArgumentNotNullOrWhitespace(value, nameof(value));
+
+            if (value.Length != 3)
+            {
+                throw new ArgumentException("Must be a 3-digit currency code");
+            }
+
+            return value;
+        }
     }
 }
