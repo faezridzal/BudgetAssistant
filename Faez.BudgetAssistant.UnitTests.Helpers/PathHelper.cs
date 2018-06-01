@@ -1,4 +1,4 @@
-﻿namespace Faez.BudgetAssistant.Excel.UnitTests.Helpers
+﻿namespace Faez.BudgetAssistant.UnitTests.Helpers
 {
     using System;
     using System.IO;

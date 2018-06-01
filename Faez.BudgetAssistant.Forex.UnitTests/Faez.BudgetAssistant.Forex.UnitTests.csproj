@@ -12,12 +12,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Faez.BudgetAssistant.Excel\Faez.BudgetAssistant.Excel.csproj" />
+    <ProjectReference Include="..\Faez.BudgetAssistant.Forex\Faez.BudgetAssistant.Forex.csproj" />
     <ProjectReference Include="..\Faez.BudgetAssistant.UnitTests.Helpers\Faez.BudgetAssistant.UnitTests.Helpers.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Files\Budget.xlsx">
+    <None Update="Files\Fixer.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Files\Maybank.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

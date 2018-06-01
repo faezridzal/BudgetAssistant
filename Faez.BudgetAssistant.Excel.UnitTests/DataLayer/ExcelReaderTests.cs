@@ -3,9 +3,9 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using BudgetAssistant.UnitTests.Helpers;
     using Excel.DataLayer;
     using FluentAssertions;
-    using Helpers;
     using Models;
     using NUnit.Framework;
 
