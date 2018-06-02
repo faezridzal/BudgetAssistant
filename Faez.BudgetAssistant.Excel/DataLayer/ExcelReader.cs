@@ -10,7 +10,7 @@
     public sealed class ExcelReader : IExcelReader
     {
         private const int StartRow = 4;
-        private const int EndRow = 26;
+        private const int EndRow = 27;
 
         private const int StartColumn = 2;
         private const int EndColumn = 13;
