@@ -3,17 +3,18 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.IO;
     using System.Linq;
     using HtmlAgilityPack;
     using Models;
 
     public sealed class MaybankForexReader : IForexReader
     {
-        public IEnumerable<ForexRate> ReadAll(string payload)
+        public IEnumerable<ForexRate> ReadAll(Stream stream)
         {
             var document = new HtmlDocument();
 
-            document.LoadHtml(payload);
+            document.Load(stream);
 
             var qualifiedNodes = document.DocumentNode.SelectNodes("//tr");
             var sellNode = qualifiedNodes.FirstOrDefault(n => n.ChildNodes.Any(c => c.InnerText == "EUR"));

@@ -25,7 +25,7 @@
                 entries.AddRange(new ExcelReader().GetEntries(stream));
             }
 
-            entries.Count.Should().Be(540);
+            entries.Count.Should().Be(564);
 
             foreach (var entry in entries)
             {

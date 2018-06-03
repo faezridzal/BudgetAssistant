@@ -17,17 +17,20 @@
         public void CorrectParsing()
         {
             var file = Path.Combine(PathHelper.GetAssemblyPath(), FilePath);
-            var payload = File.ReadAllText(file);
-            var rates = new FixerForexReader().ReadAll(payload).ToList();
-
-            rates.Should().HaveCount(168);
-
-            foreach (var rate in rates)
+            
+            using (var stream = File.OpenRead(file))
             {
-                rate.Date.Should().Be(new DateTime(2018, 6, 1));
-                rate.FromCurrency.Should().Be("EUR");
-                rate.ToCurrency.Should().NotBeNullOrWhiteSpace().And.HaveLength(3);
-                rate.Rate.Should().BePositive();
+                var rates = new FixerForexReader().ReadAll(stream).ToList();
+
+                rates.Should().HaveCount(168);
+
+                foreach (var rate in rates)
+                {
+                    rate.Date.Should().Be(new DateTime(2018, 6, 1));
+                    rate.FromCurrency.Should().Be("EUR");
+                    rate.ToCurrency.Should().NotBeNullOrWhiteSpace().And.HaveLength(3);
+                    rate.Rate.Should().BePositive();
+                }
             }
         }
     }

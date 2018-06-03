@@ -9,10 +9,10 @@
 
     public sealed class FixerForexReader : IForexReader
     {
-        public IEnumerable<ForexRate> ReadAll(string payload)
+        public IEnumerable<ForexRate> ReadAll(Stream stream)
         {
-            using (var stringReader = new StringReader(payload))
-            using (var reader = new JsonTextReader(stringReader))
+            using (var streamReader = new StreamReader(stream))
+            using (var reader = new JsonTextReader(streamReader))
             {
                 var serializer = new JsonSerializer();
                 var fixerPayload = serializer.Deserialize<FixerPayload>(reader);

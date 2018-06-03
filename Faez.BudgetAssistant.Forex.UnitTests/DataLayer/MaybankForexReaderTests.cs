@@ -17,13 +17,16 @@
         public void CorrectParsing()
         {
             var file = Path.Combine(PathHelper.GetAssemblyPath(), FilePath);
-            var payload = File.ReadAllText(file);
-            var rate = new MaybankForexReader().ReadAll(payload).Single();
 
-            rate.Date.Should().Be(DateTime.Today);
-            rate.FromCurrency.Should().Be("MYR");
-            rate.ToCurrency.Should().Be("EUR");
-            rate.Rate.Should().Be(4.714M);
+            using (var stream = File.OpenRead(file))
+            {
+                var rate = new MaybankForexReader().ReadAll(stream).Single();
+
+                rate.Date.Should().Be(DateTime.Today);
+                rate.FromCurrency.Should().Be("MYR");
+                rate.ToCurrency.Should().Be("EUR");
+                rate.Rate.Should().Be(4.714M);
+            }
         }
     }
 }
